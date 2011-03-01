@@ -9,12 +9,14 @@
 #include "filter.h"
 
 enum NoiseType {
+
 	NOISE_UNIFORM = 0,
 	NOISE_GAUSSIAN,
 	NOISE_EXPONENTIAL,
 	NOISE_RAYLEIGH,
 	NOISE_GAMMA,
 	NOISE_IMPULSE
+
 };
 
 class Noise : public Filter {
@@ -27,13 +29,14 @@ public:
 	NoiseType tempNoiseType;
 
 	Noise(IplImage* src);
-	void genNoise(const IplImage* src, IplImage* result, int ch, float amount);
 
-	// --- virtual function implementation --- //
+	// Virtual function implementation
 	void filtering(const IplImage* src, IplImage* rst);
 	void reset();
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
+
+	void genNoise(const IplImage* src, IplImage* result, int ch, float amount);
 
 private:
 

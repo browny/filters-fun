@@ -17,14 +17,14 @@ public:
 
 	GammaEditWindow(string winName, CvSize winSize);
 
-	bool m_needUpdateGamma;
+	bool needUpdateGamma;
 
 	// Virtual function implementation
 	void setupCallbacks();
 	void onMouseCallback(int event, int x, int y);
 	void onKeyCallback(int keyCode);
 
-	// Access Method
+	// Access function
 	GAMMA_CHANNEL getCurrentChannel();
 	void setCurrentChannel(GAMMA_CHANNEL ch);
 
@@ -43,7 +43,7 @@ private:
 	GAMMA_CHANNEL m_currentChannel;
 	int m_selectedCtrlPtIndex;
 	vector<int> m_inverseTable;
-	vector< vector<CvPoint2D32f> > m_threeGammaCurvesCtrlPts;
+	vector< vector<CvPoint2D32f> > ctrlPointsList;
 
 	void updateGammaCurve(IplImage* ctrlPannel);
 	int getNearPointIndex(CvPoint mouse_pt, int ch);

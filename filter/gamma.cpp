@@ -22,13 +22,13 @@ Gamma::Gamma(const IplImage* src) :
 
 void Gamma::setCtrlPoints(int ch, vector<CvPoint2D32f> ctrlPoints) {
 
-	m_ctrlPointsList[ch] = ctrlPoints;
+	ctrlPointsList[ch] = ctrlPoints;
 
 }
 
 void Gamma::updateGammaTables(int ch) {
 
-	vector<CvPoint2D32f> ctrlPts = m_ctrlPointsList[ch];
+	vector<CvPoint2D32f> ctrlPts = ctrlPointsList[ch];
 
 	CvPoint2D32f *pControls = new CvPoint2D32f[4];
 	for (int i = 0; i < 4; ++i) {
@@ -67,7 +67,7 @@ void Gamma::updateGammaTables(int ch) {
 
 void Gamma::setCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList) {
 
-	m_ctrlPointsList = ctrlPointsList;
+	this->ctrlPointsList = ctrlPointsList;
 
 	updateGammaTables(0);
 	updateGammaTables(1);
@@ -104,7 +104,7 @@ CvPoint2D32f Gamma::pointTimes(float c, CvPoint2D32f p) {
 	return p;
 }
 
-// --- virtual function implementation --- //
+// Virtual function implementation
 void Gamma::filtering(const IplImage* src, IplImage* rst) {
 
 	for (int row = 0; row < src->height; row++) {
@@ -189,9 +189,9 @@ void Gamma::exportSettings(string fileName, int suffix) {
 
 	cout << "> gamma setting was saved to: " << fileName << endl;
 
-	for (unsigned int i = 0; i < m_ctrlPointsList.size(); ++i) {
+	for (unsigned int i = 0; i < ctrlPointsList.size(); ++i) {
 
-		vector<CvPoint2D32f> ctrlPts = m_ctrlPointsList[i];
+		vector<CvPoint2D32f> ctrlPts = ctrlPointsList[i];
 		for (unsigned int j = 0; j < ctrlPts.size(); ++j) {
 			outfile << " " << ctrlPts[j].x << " " << ctrlPts[j].y;
 		}

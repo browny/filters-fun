@@ -13,9 +13,9 @@ int main (int argc, const char **argv) {
 	FileReader fileReader(argc, argv);
 	fileReader.readFile("test.jpg");
 
-	Controller controller(fileReader.m_scaledImg);
+	Controller controller(fileReader.scaledImg);
 
-	ImgEditWindow imgEditWindow("ImgEdit", cvGetSize(fileReader.m_scaledImg));
+	ImgEditWindow imgEditWindow("ImgEdit", cvGetSize(fileReader.scaledImg));
 	imgEditWindow.setupCallbacks();
 
 	GammaEditWindow gammaEditWindow("gamma", cvSize(255, 255));
@@ -24,20 +24,20 @@ int main (int argc, const char **argv) {
 	bool eventLoop = true;
 	while (eventLoop) {
 
-		// EditWindow notify Controller to respond user's modification
-		if (imgEditWindow.m_needUpdateVignet)
+		// EditWindows notify Controller to respond user event
+		if (imgEditWindow.needUpdateVignet)
 			imgEditWindow.vignetInvokeController(&controller, Controller::setVignetCenterWarpper);
 
-		if (imgEditWindow.m_needUpdateBokeh)
+		if (imgEditWindow.needUpdateBokeh)
 			imgEditWindow.bokehInvokeController(&controller, Controller::setBokehCentersWarpper);
 
-		if (gammaEditWindow.m_needUpdateGamma)
+		if (gammaEditWindow.needUpdateGamma)
 			gammaEditWindow.gammaInvokeController(&controller, Controller::setGammaCtrlPointsListWrapper);
 
 
 		// Display
 		cvShowImage(cvGetWindowName(gammaEditWindow.m_window), gammaEditWindow.m_windowImg);
-		cvShowImage(cvGetWindowName(imgEditWindow.m_window), controller.m_rstImg);
+		cvShowImage(cvGetWindowName(imgEditWindow.m_window), controller.outImg);
 
 
 		// Global keyboard events
@@ -140,7 +140,7 @@ int main (int argc, const char **argv) {
 		if (c == 's' || c == 'S') { // output result to 'lomo.jpg' file
 
 			int p[3] = { CV_IMWRITE_JPEG_QUALITY, 100, 0 };
-			cvSaveImage("lomo.jpg", controller.m_rstImg, p);
+			cvSaveImage("lomo.jpg", controller.outImg, p);
 			cout << ">> your lomo Image was saved!" << endl;
 
 		}

@@ -16,18 +16,15 @@ public:
 
 	ImgEditWindow(string winName, CvSize winSize);
 
-	CvPoint m_vignetPt;
-	CvPoint m_bokehFirstPt, m_bokehSecPt;
-
-	bool m_needUpdateVignet;
-	bool m_needUpdateBokeh;
+	bool needUpdateVignet;
+	bool needUpdateBokeh;
 
 	// Virtual function implementation
 	void setupCallbacks();
 	void onMouseCallback(int event, int x, int y);
 	void onKeyCallback(int keyCode);
 
-	// Access method
+	// Access function
 	EDIT_MODE getEditMode() { return m_editMode; }
 	void setEditMode(EDIT_MODE mode) { m_editMode = mode; }
 
@@ -45,6 +42,9 @@ public:
 	~ImgEditWindow();
 
 private:
+
+	CvPoint m_vignetPt;
+	CvPoint m_bokehFirstPt, m_bokehSecPt;
 
 	int m_rightClickCnt;
 

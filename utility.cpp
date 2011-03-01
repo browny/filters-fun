@@ -8,6 +8,9 @@ double dist(CvPoint a, CvPoint b) {
 }
 
 void getLineFunc(CvPoint strtPt, CvPoint endPt, CvScalar &lineFunc) {
+
+	// Line function: ax -y + b = 0
+
 	float slope = (float) (endPt.y - strtPt.y) / (float) (endPt.x - strtPt.x);
 	if ((endPt.x - strtPt.x) == 0)
 		slope = 999;
@@ -15,9 +18,11 @@ void getLineFunc(CvPoint strtPt, CvPoint endPt, CvScalar &lineFunc) {
 	lineFunc.val[0] = slope;
 	lineFunc.val[1] = -1;
 	lineFunc.val[2] = (float) strtPt.y - ((float) strtPt.x * slope);
+
 }
 
 float getPt2LineDis(const CvPoint &p, const CvScalar &line) {
+
 	float a = (float) line.val[0];
 	float b = (float) line.val[1];
 	float c = (float) line.val[2];
@@ -32,7 +37,9 @@ float getPt2LineDis(const CvPoint &p, const CvScalar &line) {
 }
 
 double getMaxDisFromCorners(const CvSize &imgSize, const CvPoint &center) {
-	// 計算極端值, 四個角落到某一中心, 取最大距離
+
+	// given a rect and a line
+	// get which corner of rect is farest from the line
 
 	vector<CvPoint> corners(4);
 	corners[0] = cvPoint(0, 0);
@@ -54,7 +61,9 @@ double getMaxDisFromCorners(const CvSize &imgSize, const CvPoint &center) {
 }
 
 float getMaxDisFromCorners(const CvSize &imgSize, const CvScalar &line) {
-	// 計算極端值, 四個角落到某一直線, 取最大距離
+
+	// given a rect and a line
+	// get which corner of rect is farest from the line
 
 	vector<CvPoint> corners(4);
 	corners[0] = cvPoint(0, 0);
@@ -76,7 +85,9 @@ float getMaxDisFromCorners(const CvSize &imgSize, const CvScalar &line) {
 }
 
 double getRotateAngle(Coord vec1, Coord vec2) {
-	// 計算vec1和vec2兩向量之夾角(有方向性)
+
+	// given 2 vectors: vec1 and vec2
+	// get the included angle between them (directional)
 
 	const double epsilon = 1.0e-6;
 	const double PI = acos(-1.0); // 180 degree
@@ -99,7 +110,7 @@ double getRotateAngle(Coord vec1, Coord vec2) {
 		double cross = 0;
 		angle = acos(dotProd);
 
-		//cross product (clockwise or counter-clockwise)
+		//cross product (for judging clockwise or counter-clockwise)
 		cross = (norVec1.x * norVec2.y) - (norVec2.x * norVec1.y);
 
 		if (cross > 0) // vec1 rotate clockwise to vec2
@@ -111,7 +122,8 @@ double getRotateAngle(Coord vec1, Coord vec2) {
 }
 
 Coord transRotate(Coord &point, Coord &trans, double rotDeg) {
-	// 將point點轉rotDeg角度後至trans點
+
+	// translation then rotation
 
 	const double PI = acos(-1.0); // 180 degree
 	Coord res = point;
@@ -130,10 +142,13 @@ Coord transRotate(Coord &point, Coord &trans, double rotDeg) {
 	res.y = temp.x * sinTheta + temp.y * cosTheta;
 
 	return res;
+
 }
 
 CvPoint getMappingPoint(CvPoint pt, CvPoint strtPt, CvPoint endPt) {
-	//以strtPt和endPt構成的向量當成x軸之後, pt點應該mapping至哪一點
+
+	// use the line from strtPt to endPt as x axis to define new coordinate system
+	// how 'pt' to change its coordinate
 
 	double longAxisLength = dist(strtPt, endPt);
 	Coord longAxisUnitVector;

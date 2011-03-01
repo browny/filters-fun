@@ -14,14 +14,15 @@ public:
 
 	Gamma(const IplImage* src);
 
-	vector< vector<CvPoint2D32f> > m_ctrlPointsList;
+	vector< vector<CvPoint2D32f> > ctrlPointsList;
 
-	// --- virtual function implementation --- //
+	// Virtual function implementation
 	void filtering(const IplImage* src, IplImage* rst);
 	void reset();
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
 
+	// Member function
 	void setCtrlPoints(int ch, vector<CvPoint2D32f> ctrlPoints);
 	void updateGammaTables(int ch);
 	void setCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList);
@@ -39,8 +40,6 @@ private:
 	CvPoint2D32f Bernstein(float u, CvPoint2D32f* p);
 	CvPoint2D32f pointAdd(CvPoint2D32f p, CvPoint2D32f q);
 	CvPoint2D32f pointTimes(float c, CvPoint2D32f p);
-
-
 
 };
 

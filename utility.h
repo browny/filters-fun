@@ -15,9 +15,9 @@ void getLineFunc(CvPoint strtPt, CvPoint endPt, CvScalar &lineFunc);
 
 float getPt2LineDis(const CvPoint &p, const CvScalar &line);
 
-double getMaxDisFromCorners(const CvSize &imgSize, const CvPoint &center);
-
 float getMaxDisFromCorners(const CvSize &imgSize, const CvScalar &line);
+
+double getMaxDisFromCorners(const CvSize &imgSize, const CvPoint &center);
 
 double getRotateAngle(Coord vec1, Coord vec2);
 

@@ -12,7 +12,7 @@ public:
 
 	FileReader(int argc, const char** argv);
 
-	IplImage* m_scaledImg;
+	IplImage* scaledImg;
 
 	bool readFile(string filePath);
 

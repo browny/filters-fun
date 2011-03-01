@@ -29,7 +29,7 @@ public:
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
 
-	// Access method
+	// Access function
 	GRADIENT_MODE getGradientMode()          { return m_gradientMode; }
 	void setGradientMode(GRADIENT_MODE mode) { m_gradientMode = mode;  }
 

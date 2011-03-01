@@ -15,7 +15,7 @@ public:
 
 	Controller(const IplImage* src);
 
-	IplImage* m_rstImg;
+	IplImage* outImg;
 
 	// Access function
 	GRADIENT_MODE getBokehGradientMode();

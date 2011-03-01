@@ -6,7 +6,7 @@
 FileReader::FileReader(int argc, const char** argv) : LONGSIDE_MAX(640) {
 
 	m_srcImg = 0;
-	m_scaledImg = 0;
+	scaledImg = 0;
 
 }
 
@@ -44,14 +44,14 @@ void FileReader::scaleImg(const IplImage* srcImg) {
 		int newWidth  = (double)(srcImg->width)  / scaleRatio;
 		int newHeight = (double)(srcImg->height) / scaleRatio;
 		CvSize newSize = cvSize(newWidth, newHeight);
-		m_scaledImg = cvCreateImage(newSize, srcImg->depth, srcImg->nChannels);
+		scaledImg = cvCreateImage(newSize, srcImg->depth, srcImg->nChannels);
 
-		cvResize(srcImg, m_scaledImg);
+		cvResize(srcImg, scaledImg);
 
 	} else {
 
-		m_scaledImg = cvCreateImage(cvGetSize(srcImg), srcImg->depth, srcImg->nChannels);
-		cvCopy(srcImg, m_scaledImg);
+		scaledImg = cvCreateImage(cvGetSize(srcImg), srcImg->depth, srcImg->nChannels);
+		cvCopy(srcImg, scaledImg);
 
 	}
 
@@ -59,6 +59,6 @@ void FileReader::scaleImg(const IplImage* srcImg) {
 
 FileReader::~FileReader() {
 
-	cvReleaseImage(&m_scaledImg);
+	cvReleaseImage(&scaledImg);
 
 }

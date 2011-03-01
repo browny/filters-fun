@@ -15,14 +15,14 @@ GammaEditWindow::GammaEditWindow(string winName, CvSize winSize) :
 
 void GammaEditWindow::reset() {
 
-	m_needUpdateGamma = false;
+	needUpdateGamma = false;
 	m_currentChannel = R_CHANNEL;
 	m_selectedCtrlPtIndex = -1;
 
-	m_threeGammaCurvesCtrlPts.resize(3, vector<CvPoint2D32f>(4));
+	ctrlPointsList.resize(3, vector<CvPoint2D32f>(4));
 
-	vector< vector<CvPoint2D32f> >::iterator it = m_threeGammaCurvesCtrlPts.begin();
-	while (it != m_threeGammaCurvesCtrlPts.end()) {
+	vector< vector<CvPoint2D32f> >::iterator it = ctrlPointsList.begin();
+	while (it != ctrlPointsList.end()) {
 
 		vector<CvPoint2D32f>::iterator it2 = it->begin();
 
@@ -52,8 +52,8 @@ void GammaEditWindow::reset() {
 void GammaEditWindow::gammaInvokeController(void* pt2Obj,
 		void( pt2Func)(void* pt2Obj, vector< vector<CvPoint2D32f> > ctrlPointsList)) {
 
-	pt2Func(pt2Obj, m_threeGammaCurvesCtrlPts);
-	m_needUpdateGamma = false;
+	pt2Func(pt2Obj, ctrlPointsList);
+	needUpdateGamma = false;
 
 }
 
@@ -61,7 +61,7 @@ void GammaEditWindow::updateGammaCurve(IplImage* ctrlPannel) {
 
 	cvZero(ctrlPannel);
 
-	vector<CvPoint2D32f> ctrlPts = m_threeGammaCurvesCtrlPts[ (int)m_currentChannel ];
+	vector<CvPoint2D32f> ctrlPts = ctrlPointsList[ (int)m_currentChannel ];
 
 	// draw control points
 	for (int i = 0; i < 4; i++) {
@@ -112,7 +112,7 @@ int GammaEditWindow::getNearPointIndex(CvPoint mouse_pt, int ch) {
 	CvPoint pt = cvPoint(0, 0);
 	for (int i = 0; i < 4; i++) {
 
-		vector<CvPoint2D32f> ctrlPts = m_threeGammaCurvesCtrlPts[ch];
+		vector<CvPoint2D32f> ctrlPts = ctrlPointsList[ch];
 
 		pt.x = mouse_pt.x - (int) ctrlPts[i].x;
 		pt.y = mouse_pt.y - (int) ctrlPts[i].y;
@@ -161,7 +161,7 @@ void GammaEditWindow::onMouseCallback(int event, int x, int y) {
 
 		y = m_inverseTable[y];
 
-		vector<CvPoint2D32f> ctrlPts = m_threeGammaCurvesCtrlPts[ (int)m_currentChannel ];
+		vector<CvPoint2D32f> ctrlPts = ctrlPointsList[ (int)m_currentChannel ];
 
 		if (event == CV_EVENT_LBUTTONDOWN) {
 
@@ -184,10 +184,10 @@ void GammaEditWindow::onMouseCallback(int event, int x, int y) {
 				ctrlPts[m_selectedCtrlPtIndex].x = (float) x;
 				ctrlPts[m_selectedCtrlPtIndex].y = (float) y;
 
-				m_threeGammaCurvesCtrlPts[ (int)m_currentChannel ] = ctrlPts;
+				ctrlPointsList[ (int)m_currentChannel ] = ctrlPts;
 
 				updateGammaCurve(m_windowImg);
-				m_needUpdateGamma = true;
+				needUpdateGamma = true;
 
 			}
 		}
@@ -218,7 +218,7 @@ void GammaEditWindow::setCurrentChannel(GAMMA_CHANNEL ch) {
 
 	m_currentChannel = ch;
 	updateGammaCurve(m_windowImg);
-	m_needUpdateGamma = true;
+	needUpdateGamma = true;
 
 }
 

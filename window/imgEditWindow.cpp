@@ -9,8 +9,8 @@ ImgEditWindow::ImgEditWindow(string winName, CvSize winSize) : UIWindow(winName,
 	m_bokehFirstPt = cvPoint(0, 0);
 	m_bokehSecPt   = cvPoint(0, 0);
 
-	m_needUpdateVignet = false;
-	m_needUpdateBokeh  = false;
+	needUpdateVignet = false;
+	needUpdateBokeh  = false;
 
 
 	setEditMode(VIGNET_EDIT);
@@ -35,7 +35,7 @@ void ImgEditWindow::onMouseCallback(int event, int x, int y) {
 		if (event == CV_EVENT_LBUTTONDOWN) {
 
 			m_vignetPt = cvPoint(x, y);
-			m_needUpdateVignet = true;
+			needUpdateVignet = true;
 
 		}
 
@@ -46,7 +46,7 @@ void ImgEditWindow::onMouseCallback(int event, int x, int y) {
 		if (event == CV_EVENT_LBUTTONDOWN) {
 
 			m_bokehFirstPt = cvPoint(x, y);
-			m_needUpdateBokeh = true;
+			needUpdateBokeh = true;
 
 		}
 
@@ -61,7 +61,7 @@ void ImgEditWindow::onMouseCallback(int event, int x, int y) {
 
 				m_bokehSecPt = cvPoint(x, y);
 				m_rightClickCnt = 0;
-				m_needUpdateBokeh = true;
+				needUpdateBokeh = true;
 
 			}
 
@@ -87,7 +87,7 @@ void ImgEditWindow::vignetInvokeController(void* pt2Obj,
 		void( pt2Func)(void* pt2Obj, CvPoint mousePt)) {
 
 	pt2Func(pt2Obj, m_vignetPt);
-	m_needUpdateVignet = false;
+	needUpdateVignet = false;
 
 }
 
@@ -95,7 +95,7 @@ void ImgEditWindow::bokehInvokeController(void* pt2Obj,
 		void( pt2Func)(void* pt2Obj, CvPoint firstPt, CvPoint secondPt)) {
 
 	pt2Func(pt2Obj, m_bokehFirstPt, m_bokehSecPt);
-	m_needUpdateBokeh = false;
+	needUpdateBokeh = false;
 
 }
 
