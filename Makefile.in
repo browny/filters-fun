@@ -1,0 +1,14 @@
+
+CFLAGS += -Wall -g -lcv -lhighgui
+CXXFLAGS =
+CFLAGS += `xml2-config --cflags`
+LIBS = `xml2-config --libs`
+INCLUDE = -I/usr/local/include/opencv
+COMPILE_FLAGS = `pkg-config opencv --cflags --libs`
+
+#EXTRA_CFLAGS = -O3 -ffast-math -fomit-frame-pointer \
+		-fbranch-target-load-optimize2 -foptimize-register-move \
+		-foptimize-sibling-calls -funroll-all-loops \
+		-fvariable-expansion-in-unroller -fvpt -fbtr-bb-exclusive
+
+
