@@ -50,7 +50,7 @@ void GammaEditWindow::reset() {
 }
 
 void GammaEditWindow::gammaInvokeController(void* pt2Obj,
-		void( pt2Func)(void* pt2Obj, vector< vector<CvPoint2D32f> > ctrlPointsList)) {
+		void( pt2Func)(void* pt2Obj, const vector< vector<CvPoint2D32f> > &ctrlPointsList)) {
 
 	pt2Func(pt2Obj, ctrlPointsList);
 	needUpdateGamma = false;

@@ -13,7 +13,7 @@
 class Controller {
 public:
 
-	Controller(const IplImage* src);
+	Controller(const IplImage &src);
 
 	IplImage* outImg;
 
@@ -28,9 +28,9 @@ public:
 	void setBokehCenters(CvPoint firstPt, CvPoint secondPt);
 	static void setBokehCentersWarpper(void* pt2Obj, CvPoint firstPt, CvPoint secondPt);
 
-	void setGammaCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList);
+	void setGammaCtrlPointsList(const vector< vector<CvPoint2D32f> > &ctrlPointsList);
 	static void setGammaCtrlPointsListWrapper(void* pt2Obj,
-			                                  vector<vector<CvPoint2D32f> > ctrlPointsList);
+			const vector<vector<CvPoint2D32f> > &ctrlPointsList);
 
 
 	void resetAll();

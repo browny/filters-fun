@@ -13,7 +13,7 @@ int main (int argc, const char **argv) {
 	FileReader fileReader(argc, argv);
 	fileReader.readFile("test.jpg");
 
-	Controller controller(fileReader.scaledImg);
+	Controller controller(*fileReader.scaledImg);
 
 	ImgEditWindow imgEditWindow("ImgEdit", cvGetSize(fileReader.scaledImg));
 	imgEditWindow.setupCallbacks();

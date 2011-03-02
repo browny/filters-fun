@@ -11,7 +11,7 @@ template<class T> string to_string(T t);
 template<class T> bool from_string(T& t, const string& s, ios_base& (*f)(ios_base&));
 void tokenize(const string &str, vector<float> &tokens, const string &delimiters);
 
-Gamma::Gamma(const IplImage* src) :
+Gamma::Gamma(const IplImage &src) :
 	Filter(src, "Gamma"), ACCURACY(255) {
 
 	gammaTableB.resize(256);
@@ -20,7 +20,7 @@ Gamma::Gamma(const IplImage* src) :
 
 }
 
-void Gamma::setCtrlPoints(int ch, vector<CvPoint2D32f> ctrlPoints) {
+void Gamma::setCtrlPoints(int ch, const vector<CvPoint2D32f> &ctrlPoints) {
 
 	ctrlPointsList[ch] = ctrlPoints;
 
@@ -65,7 +65,7 @@ void Gamma::updateGammaTables(int ch) {
 
 }
 
-void Gamma::setCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList) {
+void Gamma::setCtrlPointsList(const vector< vector<CvPoint2D32f> > &ctrlPointsList) {
 
 	this->ctrlPointsList = ctrlPointsList;
 
@@ -75,7 +75,8 @@ void Gamma::setCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList) {
 
 }
 
-CvPoint2D32f Gamma::Bernstein(float u, CvPoint2D32f* p) {
+CvPoint2D32f Gamma::Bernstein(float u, const CvPoint2D32f* p) {
+
 	CvPoint2D32f a, b, c, d, r;
 
 	a = pointTimes(pow(u, 3), p[0]);
@@ -105,14 +106,14 @@ CvPoint2D32f Gamma::pointTimes(float c, CvPoint2D32f p) {
 }
 
 // Virtual function implementation
-void Gamma::filtering(const IplImage* src, IplImage* rst) {
+void Gamma::filtering(const IplImage &src, IplImage* rst) {
 
-	for (int row = 0; row < src->height; row++) {
+	for (int row = 0; row < src.height; row++) {
 
-		uchar* pImg = (uchar*) (src->imageData + row * src->widthStep);
+		uchar* pImg = (uchar*) (src.imageData + row * src.widthStep);
 		uchar* pResult = (uchar*) (rst->imageData + row * rst->widthStep);
 
-		for (int col = 0; col < src->width; col++) {
+		for (int col = 0; col < src.width; col++) {
 			for (int ch = 0; ch < 3; ++ch) {
 
 				if (ch == 0)

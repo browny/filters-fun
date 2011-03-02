@@ -32,7 +32,7 @@ public:
 	void reset();
 
 	void gammaInvokeController(void* pt2Obj,
-			void( pt2Func)(void* pt2Obj, vector< vector<CvPoint2D32f> > ctrlPointsList));
+			void( pt2Func)(void* pt2Obj, const vector< vector<CvPoint2D32f> > &ctrlPointsList));
 
 	~GammaEditWindow();
 

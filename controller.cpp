@@ -2,12 +2,12 @@
 #include "controller.h"
 #include <highgui.h>
 
-Controller::Controller(const IplImage* src) {
+Controller::Controller(const IplImage &src) {
 
-	m_srcImg = cvCreateImage(cvGetSize(src), src->depth, src->nChannels);
-	outImg = cvCreateImage(cvGetSize(src), src->depth, src->nChannels);
-	cvCopy(src, m_srcImg);
-	cvCopy(src, outImg);
+	m_srcImg = cvCreateImage(cvGetSize(&src), src.depth, src.nChannels);
+	outImg = cvCreateImage(cvGetSize(&src), src.depth, src.nChannels);
+	cvCopy(&src, m_srcImg);
+	cvCopy(&src, outImg);
 
 	m_gamma  = new Gamma(src);
 	m_vignet = new Vignet(src);
@@ -62,7 +62,7 @@ void Controller::setBokehCentersWarpper(void* pt2Obj, CvPoint firstPt, CvPoint s
 
 }
 
-void Controller::setGammaCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPointsList) {
+void Controller::setGammaCtrlPointsList(const vector< vector<CvPoint2D32f> > &ctrlPointsList) {
 
 	m_gamma->setCtrlPointsList(ctrlPointsList);
 
@@ -71,7 +71,7 @@ void Controller::setGammaCtrlPointsList(vector< vector<CvPoint2D32f> > ctrlPoint
 }
 
 void Controller::setGammaCtrlPointsListWrapper(void* pt2Obj,
-		vector<vector<CvPoint2D32f> > ctrlPointsList) {
+		const vector<vector<CvPoint2D32f> > &ctrlPointsList) {
 
 	Controller* controllerObj = (Controller*) pt2Obj;
 	controllerObj->setGammaCtrlPointsList(ctrlPointsList);
@@ -89,7 +89,7 @@ void Controller::resetAll() {
 void Controller::randomSurprise() {
 
 	m_filterBank.randomOrderFilters();
-	m_filterBank.runFilterBank(m_srcImg, outImg);
+	m_filterBank.runFilterBank(*m_srcImg, outImg);
 
 }
 
@@ -126,7 +126,7 @@ void Controller::decreBokehPower() {
 void Controller::updateAndRunFilterBank(Filter* filter) {
 
 	m_filterBank.addFilter(filter);
-	m_filterBank.runFilterBank(m_srcImg, outImg, filter->filterName);
+	m_filterBank.runFilterBank(*m_srcImg, filter->filterName, outImg);
 
 }
 

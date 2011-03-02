@@ -24,7 +24,7 @@ private:
 
 	IplImage* m_srcImg;
 
-	void scaleImg(const IplImage* srcImg);
+	void scaleImg(const IplImage &srcImg);
 
 };
 

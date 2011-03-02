@@ -10,12 +10,12 @@ using namespace std;
 class Blur {
 public:
 
-	Blur(const IplImage* src);
+	Blur(const IplImage &src);
 
 	int levelCnt;
 	vector<IplImage*> blurredImgs;
 
-	void genBlurredImgs(const IplImage* src, vector<IplImage*> &imgs);
+	void genBlurredImgs(const IplImage &src, vector<IplImage*> &imgs);
 
 	~Blur();
 

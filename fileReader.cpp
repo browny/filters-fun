@@ -23,7 +23,7 @@ bool FileReader::readFile(string filePath) {
 
 	} else {
 
-		scaleImg(m_srcImg);
+		scaleImg(*m_srcImg);
 
 		readOK = true;
 		return readOK;
@@ -33,25 +33,25 @@ bool FileReader::readFile(string filePath) {
 
 }
 
-void FileReader::scaleImg(const IplImage* srcImg) {
+void FileReader::scaleImg(const IplImage &srcImg) {
 
-	int longSide = (srcImg->width > srcImg->height) ? srcImg->width : srcImg->height;
+	int longSide = (srcImg.width > srcImg.height) ? srcImg.width : srcImg.height;
 
 	if (longSide > LONGSIDE_MAX) {
 
 		double scaleRatio = (double) longSide / LONGSIDE_MAX;
 
-		int newWidth  = (double)(srcImg->width)  / scaleRatio;
-		int newHeight = (double)(srcImg->height) / scaleRatio;
+		int newWidth  = (double)(srcImg.width)  / scaleRatio;
+		int newHeight = (double)(srcImg.height) / scaleRatio;
 		CvSize newSize = cvSize(newWidth, newHeight);
-		scaledImg = cvCreateImage(newSize, srcImg->depth, srcImg->nChannels);
+		scaledImg = cvCreateImage(newSize, srcImg.depth, srcImg.nChannels);
 
-		cvResize(srcImg, scaledImg);
+		cvResize(&srcImg, scaledImg);
 
 	} else {
 
-		scaledImg = cvCreateImage(cvGetSize(srcImg), srcImg->depth, srcImg->nChannels);
-		cvCopy(srcImg, scaledImg);
+		scaledImg = cvCreateImage(cvGetSize(&srcImg), srcImg.depth, srcImg.nChannels);
+		cvCopy(&srcImg, scaledImg);
 
 	}
 

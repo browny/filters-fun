@@ -1,2 +1,0 @@
-1. 成員函數排列順序
-    virtual function -> access function -> member function

@@ -2,16 +2,16 @@
 #include "bokeh.h"
 #include <highgui.h>
 
-Bokeh::Bokeh(const IplImage* img) : Filter(img, "Bokeh") {
+Bokeh::Bokeh(const IplImage &img) : Filter(img, "Bokeh") {
 
 	m_gradientMode = ELLIPSE;
 
 	m_linearGrad  = new LinearGradient(cvPoint(0, 0), cvPoint(0, 0), 0.5, cvScalar(0));
-	m_pointGrad   = new PointGradient(cvPoint(img->width/2, img->height/2), 0.7, 1.0);
+	m_pointGrad   = new PointGradient(cvPoint(img.width/2, img.height/2), 0.7, 1.0);
 	m_ellipseGrad = new EllipseGradient(cvPoint(0, 0), cvPoint(0, 0), 3, 0.3);
 
 	m_blurMaker = new Blur(img);
-	m_gradImg = cvCreateImage(cvGetSize(img), IPL_DEPTH_64F, 1);
+	m_gradImg = cvCreateImage(cvGetSize(&img), IPL_DEPTH_64F, 1);
 
 	genBlurredImg(img);
 
@@ -53,7 +53,7 @@ void Bokeh::genGradient(Gradient* grad) {
 
 }
 
-void Bokeh::genBlurredImg(const IplImage* src) {
+void Bokeh::genBlurredImg(const IplImage &src) {
 
 	m_blurMaker->genBlurredImgs(src, m_blurMaker->blurredImgs);
 
@@ -134,10 +134,10 @@ void Bokeh::setSecondCenter(CvPoint pt) {
 }
 
 // Virtual function implementation
-void Bokeh::filtering(const IplImage* src, IplImage* rst) {
+void Bokeh::filtering(const IplImage &src, IplImage* rst) {
 
-	cvCopy(src, rst);
-	genBlurredImg(rst);
+	cvCopy(&src, rst);
+	genBlurredImg(*rst);
 
 	if (m_gradientMode == LINEAR) {
 		genGradient(m_linearGrad);

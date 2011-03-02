@@ -18,8 +18,8 @@ public:
 	vector<Filter*> m_filters;
 
 	void addFilter(Filter* filter);
-	void runFilterBank(const IplImage* src, IplImage* rst);
-	void runFilterBank(const IplImage* src, IplImage* rst, string filterName);
+	void runFilterBank(const IplImage &src, IplImage* rst);
+	void runFilterBank(const IplImage &src, string filterName, IplImage* rst);
 	void randomOrderFilters();
 
 private:

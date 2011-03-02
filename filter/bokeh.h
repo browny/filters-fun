@@ -21,10 +21,10 @@ enum GRADIENT_MODE {
 class Bokeh : public Filter {
 public:
 
-	Bokeh(const IplImage* img);
+	Bokeh(const IplImage &img);
 
 	// Virtual function implementation
-	void filtering(const IplImage* src, IplImage* rst);
+	void filtering(const IplImage &src, IplImage* rst);
 	void reset();
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
@@ -44,7 +44,7 @@ public:
 	void decrementPower();
 
 	void genGradient(Gradient* grad);
-	void genBlurredImg(const IplImage* src);
+	void genBlurredImg(const IplImage &src);
 
 
 	~Bokeh();

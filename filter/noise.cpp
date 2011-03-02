@@ -3,7 +3,7 @@
 #include "noise.h"
 using namespace std;
 
-Noise::Noise(IplImage* src) : Filter(src, "Noise") {
+Noise::Noise(const IplImage &src) : Filter(src, "Noise") {
 
 	noisePower = 0;
 	noiseType = NOISE_GAUSSIAN;
@@ -86,9 +86,9 @@ double Noise::impulse(float amount)
 	return 0;
 }
 
-void Noise::genNoise(const IplImage* src, IplImage* result, int ch, float amount) {
+void Noise::genNoise(const IplImage &src, IplImage* result, int ch, float amount) {
 
-	cvCopy(src, result);
+	cvCopy(&src, result);
 	CvSize imgSize = cvGetSize(result);
 
 	// Go through each pixel
@@ -156,7 +156,7 @@ void Noise::genNoise(const IplImage* src, IplImage* result, int ch, float amount
 }
 
 // --- virtual function implementation --- //
-void Noise::filtering(const IplImage* src, IplImage* rst) {
+void Noise::filtering(const IplImage &src, IplImage* rst) {
 
 	genNoise(src, rst, 3, noisePower);
 	cvCopy(rst, backupResultImg);

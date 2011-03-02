@@ -28,15 +28,15 @@ public:
 	int tempNoisePower;
 	NoiseType tempNoiseType;
 
-	Noise(IplImage* src);
+	Noise(const IplImage &src);
 
 	// Virtual function implementation
-	void filtering(const IplImage* src, IplImage* rst);
+	void filtering(const IplImage &src, IplImage* rst);
 	void reset();
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
 
-	void genNoise(const IplImage* src, IplImage* result, int ch, float amount);
+	void genNoise(const IplImage &src, IplImage* result, int ch, float amount);
 
 private:
 

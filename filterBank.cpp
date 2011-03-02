@@ -14,32 +14,35 @@ void FilterBank::addFilter(Filter* filter) {
 
 }
 
-void FilterBank::runFilterBank(const IplImage* src, IplImage* rst) {
+void FilterBank::runFilterBank(const IplImage &src, IplImage* rst) {
 
-	vector<Filter*>::iterator it = m_filters.begin();
+	vector<Filter*>::iterator filterIndex = m_filters.begin();
 
 	bool first = true;
 
-	while (it != m_filters.end()) {
+	while (filterIndex != m_filters.end()) {
 
 		if (first) {
 
-			(*it)->filtering(src, rst);
+			(*filterIndex)->filtering(src, rst);
 			first = false;
 
 		} else {
 
-			(*it)->filtering( (*(it-1))->backupResultImg, rst );
+			vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
+			IplImage* backImg = (*preFilterIndex)->backupResultImg;
+
+			(*filterIndex)->filtering(*backImg, rst);
 
 		}
 
-		it++;
+		filterIndex++;
 
 	}
 
 }
 
-void FilterBank::runFilterBank(const IplImage* src, IplImage* rst, string filterName) {
+void FilterBank::runFilterBank(const IplImage &src, string filterName, IplImage* rst) {
 
 	int index = getFilterIndex(filterName);
 
@@ -47,23 +50,25 @@ void FilterBank::runFilterBank(const IplImage* src, IplImage* rst, string filter
 	if (index == 0)
 		filterIsFirst = true;
 
-	vector<Filter*>::iterator it = m_filters.begin() + index;
+	vector<Filter*>::iterator filterIndex = m_filters.begin() + index;
 
-
-	while (it != m_filters.end()) {
+	while (filterIndex != m_filters.end()) {
 
 		if (filterIsFirst) {
 
-			(*it)->filtering(src, rst);
+			(*filterIndex)->filtering(src, rst);
 			filterIsFirst = false;
 
 		} else {
 
-			(*it)->filtering( (*(it-1))->backupResultImg, rst );
+			vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
+			IplImage* backImg = (*preFilterIndex)->backupResultImg;
+
+			(*filterIndex)->filtering(*backImg, rst);
 
 		}
 
-		it++;
+		filterIndex++;
 
 	}
 

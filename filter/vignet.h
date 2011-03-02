@@ -11,10 +11,10 @@ class Vignet : public Filter {
 	
 public:
 	
-	Vignet(const IplImage* img);
+	Vignet(const IplImage &img);
 
 	// Virtual function implementation
-	void filtering(const IplImage* src, IplImage* rst);
+	void filtering(const IplImage &src, IplImage* rst);
 	void reset();
 	void importSettings(string fileName, int suffix);
 	void exportSettings(string fileName, int suffix);
