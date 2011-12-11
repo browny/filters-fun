@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "../include/linearGradient.h"
-#include "../../include/utility.h"
+#include "utility.h"
 using namespace std;
 
 LinearGradient::LinearGradient(CvPoint p1, CvPoint p2, double pw, CvScalar s) :

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 INCLUDE_DIRECTORIES(../include/)
-SET(LIBGRADIENT_SRC ellipseGradient.cpp linearGradient.cpp pointGradient.cpp)
+SET(LIBGRADIENT_SRC ellipseGradient.cpp linearGradient.cpp pointGradient.cpp utility.cpp)
 
 ADD_LIBRARY(gradient SHARED ${LIBGRADIENT_SRC})
 

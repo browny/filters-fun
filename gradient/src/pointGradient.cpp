@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "../include/pointGradient.h"
-#include "../../include/utility.h"
+#include "utility.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 
 #include <math.h>
 #include <iostream>
-#include "../../include/utility.h"
+#include "utility.h"
 #include "../include/ellipseGradient.h"
 using namespace std;
 
