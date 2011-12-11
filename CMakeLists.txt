@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 PROJECT(FILTER_FUN)
-
+FILE(MAKE_DIRECTORY "lib")
 ADD_SUBDIRECTORY(filter/src)
 ADD_SUBDIRECTORY(gradient/src)
 ADD_SUBDIRECTORY(window/src)

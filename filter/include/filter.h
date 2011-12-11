@@ -7,8 +7,7 @@
 #define __FILTER_H__
 
 #include <string>
-#include "../../include/opencv/core/core_c.h"
-#include "../../include/opencv/imgproc/imgproc_c.h"
+#include <cv.h>
 using namespace std;
 
 class Filter {

@@ -1,6 +1,5 @@
 
 #include "../include/vignet.h"
-#include "../../include/opencv/highgui/highgui_c.h"
 
 Vignet::Vignet(const IplImage &img) : Filter(img, "Vignet") {
 

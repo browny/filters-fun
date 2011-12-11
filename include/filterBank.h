@@ -4,7 +4,7 @@
 
 #include <string>
 #include <vector>
-#include "./opencv/core/core_c.h"
+#include <cv.h>
 #include "../filter/include/filter.h"
 
 using namespace std;

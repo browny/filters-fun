@@ -3,9 +3,8 @@
 #define __BOKEH_H__
 
 #include <vector>
-#include "../../include/opencv/core/core_c.h"
-#include "../../include/opencv/imgproc/imgproc_c.h"
-#include "../../include/opencv/highgui/highgui_c.h"
+#include <cv.h>
+#include <highgui.h>
 #include "../../gradient/include/linearGradient.h"
 #include "../../gradient/include/pointGradient.h"
 #include "../../gradient/include/ellipseGradient.h"

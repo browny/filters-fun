@@ -2,8 +2,8 @@
 #ifndef __CONTROLLER_H__
 #define __CONTROLLER_H__
 
-#include "./opencv/core/core_c.h"
-#include "./opencv/highgui/highgui_c.h"
+#include <cv.h>
+#include <highgui.h>
 #include "filterBank.h"
 #include "../filter/include/filter.h"
 #include "../filter/include/gamma.h"

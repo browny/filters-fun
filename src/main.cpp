@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "../include/opencv/highgui/highgui_c.h"
+#include <highgui.h>
 #include "../include/fileReader.h"
 #include "../include/controller.h"
 #include "../window/include/imgEditWindow.h"

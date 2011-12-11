@@ -1,7 +1,7 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
 
-#include "./opencv/core/core_c.h"
+#include <cv.h>
 
 struct Coord {
 	double x;

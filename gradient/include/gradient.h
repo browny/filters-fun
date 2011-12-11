@@ -6,8 +6,7 @@
 #ifndef __GRADIENT_H__
 #define __GRADIENT_H__
 
-#include "../../include/opencv/core/core_c.h"
-#include "../../include/opencv/imgproc/imgproc_c.h"
+#include <cv.h>
 
 class Gradient {
 public:

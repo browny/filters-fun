@@ -3,8 +3,8 @@
 #define __BLUR_H__
 
 #include <vector>
-#include "../../include/opencv/core/core_c.h"
-#include "../../include/opencv/imgproc/imgproc_c.h"
+#include <cv.h>
+#include <highgui.h>
 
 using namespace std;
 

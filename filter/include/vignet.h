@@ -2,11 +2,10 @@
 #ifndef __VIGNET_H__
 #define __VIGNET_H__
 
+#include <cv.h>
+#include <highgui.h>
 #include "filter.h"
 #include "../../gradient/include/pointGradient.h"
-#include "../../include/opencv/core/core_c.h"
-#include "../../include/opencv/imgproc/imgproc_c.h"
-#include "../../include/opencv/highgui/highgui_c.h"
 
 class Vignet : public Filter {
 	
