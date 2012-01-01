@@ -8,7 +8,7 @@
 
 ###2. Clone the project to local###
 	$ git clone git@github.com:browny/filtersFun.git
-	$ cd hand-tracking
+	$ cd filterFun
 
 ###3. Take out-of-source CMake build###
 	$ mkdir release
