@@ -7,15 +7,18 @@ Prepare your OpenCV environment
 
 Prepare the CMake build environment
 ---
+
 	$ sudo apt-get install cmake
 
 Clone the project to local
 ---
+
 	$ git clone git@github.com:browny/filtersFun.git
 	$ cd filterFun
 
 Take out-of-source CMake build
 ---
+
 	$ mkdir release
 	$ cd release
 	$ cmake ..
@@ -23,9 +26,11 @@ Take out-of-source CMake build
 
 Enjoy
 ---
+
 	$ cd bin
 	$ ./main test.jpg
 
 Exit
 ---
+
 	Press 'Esc' to close window and quit
