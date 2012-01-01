@@ -1,7 +1,7 @@
 ##Installation Guide##
 
 ###0. Prepare your OpenCV environment### 
-	Ref: [Installing Opencv2.2 in Ubuntu 11.04](http://www.samontab.com/web/2011/06/installing-opencv-2-2-in-ubuntu-11-04/)
+[Installing Opencv2.2 in Ubuntu 11.04](http://www.samontab.com/web/2011/06/installing-opencv-2-2-in-ubuntu-11-04/)
 
 ###1. Prepare the CMake build environment### 
 	$ sudo apt-get install cmake
