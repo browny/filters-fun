@@ -40,7 +40,7 @@ int main (int argc, const char **argv) {
 
 
 		// Global keyboard events
-		int c = cvWaitKey(30);
+		int c = cvWaitKey(10);
 
 		if ((char) c == 27) { // 'Esc' to terminate
 
