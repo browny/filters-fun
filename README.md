@@ -1,4 +1,3 @@
-
 ####1. Prepare your OpenCV environment####
 
 #####Linux#####
@@ -36,6 +35,6 @@
 
 	Press 'Esc' to close window and quit
 
-####7. Demo####
+####7. Demo (click below image to watch demo video)####
 
 [<img src="http://farm9.staticflickr.com/8509/8448968583_4f2d2eaa7e.jpg">](http://youtu.be/oSsC56NMi9s)
