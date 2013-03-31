@@ -9,22 +9,22 @@
 
 using namespace std;
 
-class FilterBank {
+class FilterBank
+{
 public:
 
-	FilterBank();
+    FilterBank();
 
-	vector<Filter*> m_filters;
+    vector<Filter*> m_filters;
 
-	void addFilter(Filter* filter);
-	void runFilterBank(const IplImage &src, IplImage* rst);
-	void runFilterBank(const IplImage &src, string filterName, IplImage* rst);
-	void randomOrderFilters();
+    void addFilter(Filter* filter);
+    void runFilterBank(const IplImage &src, IplImage* rst);
+    void runFilterBank(const IplImage &src, string filterName, IplImage* rst);
+    void randomOrderFilters();
 
 private:
 
-	int getFilterIndex(string filterName);
-
+    int getFilterIndex(string filterName);
 };
 
 #endif

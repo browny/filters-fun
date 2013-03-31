@@ -4,8 +4,8 @@
 #include <cv.h>
 
 struct Coord {
-	double x;
-	double y;
+    double x;
+    double y;
 };
 
 double dist(CvPoint a, CvPoint b);

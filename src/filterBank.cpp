@@ -3,125 +3,125 @@
 
 FilterBank::FilterBank() {
 
-	m_filters.resize(0);
+    m_filters.resize(0);
 
 }
 
 void FilterBank::addFilter(Filter* filter) {
 
-	if (getFilterIndex(filter->filterName) == -1) // the filter doesn't exist in filter bank
-		m_filters.push_back(filter);
+    if (getFilterIndex(filter->filterName) == -1) // the filter doesn't exist in filter bank
+        m_filters.push_back(filter);
 
 }
 
 void FilterBank::runFilterBank(const IplImage &src, IplImage* rst) {
 
-	vector<Filter*>::iterator filterIndex = m_filters.begin();
+    vector<Filter*>::iterator filterIndex = m_filters.begin();
 
-	bool first = true;
+    bool first = true;
 
-	while (filterIndex != m_filters.end()) {
+    while (filterIndex != m_filters.end()) {
 
-		if (first) {
+        if (first) {
 
-			(*filterIndex)->filtering(src, rst);
-			first = false;
+            (*filterIndex)->filtering(src, rst);
+            first = false;
 
-		} else {
+        } else {
 
-			vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
-			IplImage* backImg = (*preFilterIndex)->backupResultImg;
+            vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
+            IplImage* backImg = (*preFilterIndex)->backupResultImg;
 
-			(*filterIndex)->filtering(*backImg, rst);
+            (*filterIndex)->filtering(*backImg, rst);
 
-		}
+        }
 
-		filterIndex++;
+        filterIndex++;
 
-	}
+    }
 
 }
 
 void FilterBank::runFilterBank(const IplImage &src, string filterName, IplImage* rst) {
 
-	int index = getFilterIndex(filterName);
+    int index = getFilterIndex(filterName);
 
-	bool filterIsFirst = false;
-	if (index == 0)
-		filterIsFirst = true;
+    bool filterIsFirst = false;
+    if (index == 0)
+        filterIsFirst = true;
 
-	vector<Filter*>::iterator filterIndex = m_filters.begin() + index;
+    vector<Filter*>::iterator filterIndex = m_filters.begin() + index;
 
-	while (filterIndex != m_filters.end()) {
+    while (filterIndex != m_filters.end()) {
 
-		if (filterIsFirst) {
+        if (filterIsFirst) {
 
-			(*filterIndex)->filtering(src, rst);
-			filterIsFirst = false;
+            (*filterIndex)->filtering(src, rst);
+            filterIsFirst = false;
 
-		} else {
+        } else {
 
-			vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
-			IplImage* backImg = (*preFilterIndex)->backupResultImg;
+            vector<Filter*>::iterator preFilterIndex = filterIndex - 1;
+            IplImage* backImg = (*preFilterIndex)->backupResultImg;
 
-			(*filterIndex)->filtering(*backImg, rst);
+            (*filterIndex)->filtering(*backImg, rst);
 
-		}
+        }
 
-		filterIndex++;
+        filterIndex++;
 
-	}
+    }
 
 }
 
 void FilterBank::randomOrderFilters() {
 
-	int filterCnt = m_filters.size();
+    int filterCnt = m_filters.size();
 
-	if (filterCnt >= 2) {
+    if (filterCnt >= 2) {
 
-		FilterBank newFilterBank;
-		int randIndex = 0;
+        FilterBank newFilterBank;
+        int randIndex = 0;
 
-		randIndex = rand() % filterCnt;
-		newFilterBank.m_filters.resize(0);
+        randIndex = rand() % filterCnt;
+        newFilterBank.m_filters.resize(0);
 
-		for (int i = randIndex; i < filterCnt; ++i) {
+        for (int i = randIndex; i < filterCnt; ++i) {
 
-			newFilterBank.addFilter(m_filters[i]);
+            newFilterBank.addFilter(m_filters[i]);
 
-		}
+        }
 
-		for (int i = 0; i < randIndex; ++i) {
+        for (int i = 0; i < randIndex; ++i) {
 
-			newFilterBank.addFilter(m_filters[i]);
+            newFilterBank.addFilter(m_filters[i]);
 
-		}
+        }
 
-		m_filters = newFilterBank.m_filters;
+        m_filters = newFilterBank.m_filters;
 
-	}
+    }
 
 }
 
 int FilterBank::getFilterIndex(string filterName) {
 
-	vector<Filter*>::iterator it = m_filters.begin();
-	int index = 0;
-	bool existence = false;
+    vector<Filter*>::iterator it = m_filters.begin();
+    int index = 0;
+    bool existence = false;
 
-	while (it != m_filters.end()) {
+    while (it != m_filters.end()) {
 
-		if (filterName == (*it)->filterName) {
-			existence = true;
-			break;
-		}
+        if (filterName == (*it)->filterName) {
+            existence = true;
+            break;
+        }
 
-		index++;
-		it++;
-	}
+        index++;
+        it++;
+    }
 
-	return existence ? index : -1; // -1 menas the filter doesn't exist in filter bank
+    return existence ? index : -1; // -1 menas the filter doesn't exist in filter bank
 
 }
 

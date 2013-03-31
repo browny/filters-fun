@@ -7,26 +7,25 @@
 #include <highgui.h>
 using namespace std;
 
-class FileReader {
+class FileReader
+{
 public:
 
-	FileReader(int argc, const char** argv);
+    FileReader(int argc, const char** argv);
 
-	IplImage* scaledImg;
+    IplImage* scaledImg;
 
-	bool readFile(string filePath);
+    bool readFile(string filePath);
 
-	~FileReader();
+    ~FileReader();
 
 private:
 
-	const double LONGSIDE_MAX;
+    const double LONGSIDE_MAX;
 
-	IplImage* m_srcImg;
+    IplImage* m_srcImg;
 
-	void scaleImg(const IplImage &srcImg);
-
+    void scaleImg(const IplImage &srcImg);
 };
-
 
 #endif
