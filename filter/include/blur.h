@@ -11,20 +11,19 @@ using namespace std;
 class Blur {
 public:
 
-	Blur(const IplImage &src);
+    Blur(const IplImage &src);
 
-	int levelCnt;
-	vector<IplImage*> blurredImgs;
+    int levelCnt;
+    vector<IplImage*> blurredImgs;
 
-	void genBlurredImgs(const IplImage &src, vector<IplImage*> &imgs);
+    void genBlurredImgs(const IplImage &src, vector<IplImage*> &imgs);
 
-	~Blur();
+    ~Blur();
 
 private:
 
-	const double STEP;
-	const double MAX_SIGMA;
-
+    const double STEP;
+    const double MAX_SIGMA;
 };
 
 #endif
